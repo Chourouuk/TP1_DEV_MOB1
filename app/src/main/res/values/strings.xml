@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Mesure_Glycemie</string>
-
+    <string name="age">Votre Age :</string>
 </resources>

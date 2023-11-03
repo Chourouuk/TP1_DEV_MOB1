@@ -15,20 +15,22 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/playfair_display"
         android:gravity="center"
-        android:padding="20dp"
+        android:padding="5dp"
         android:text="@string/app_name"
-        android:textColor="#000000"
-        android:textSize="35sp"
-        android:textStyle="bold" />
+        android:textColor="@color/violet"
+        android:textSize="40sp"
+        android:textStyle= "bold"/>
     <TextView
+        android:id="@+id/Age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Votre âge : "
+        android:text="@string/age"
         android:textSize="25sp"
-        android:layout_marginTop="70dp"
-        android:textColor="#000000"
+        android:layout_marginTop="40dp"
+        android:textColor="#000"
         />
 
     <SeekBar
@@ -41,7 +43,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="3dp"
+        android:layout_height="2dp"
         android:background="@drawable/line_shape"
         android:layout_marginTop="22dp" />
 
@@ -57,6 +59,7 @@
     </TextView>
 
     <RadioGroup
+        android:id="@+id/rbtGrp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -66,7 +69,6 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_weight="1"
-            android:checked="true"
             android:text="Oui"
             android:textColor="@color/black"
             android:textSize="20sp" />
@@ -80,7 +82,7 @@
             android:textSize="20sp" />
     </RadioGroup>
     <EditText
-        android:id="@+id/etGlycemie"
+        android:id="@+id/vm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -93,14 +95,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="30dp"
         android:text="CONSULTER"
         android:textSize="20sp"
         android:textColor="#D3D3D3"
         android:onClick="calculer"
         android:background="@drawable/bottom_shape"/>
 
-
+    <TextView
+        android:id="@+id/res"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="25dp"
+        android:text="..."
+        android:padding="5dp"
+        android:textSize="25sp"
+        android:textColor="#000000">
+    </TextView>
 
 
 
