@@ -1,4 +1,4 @@
-package com.example.tp1_dev_mob1;
+package com.example.tp1_dev_mob1.view;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,16 +15,22 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tp1_dev_mob1.R;
+
+import com.example.tp1_dev_mob1.controller.Controller;
+import com.example.tp1_dev_mob1.ConsultationActivity;
+
 public class MainActivity extends AppCompatActivity {
-    private TextView resultat;
+    private String resultat;
     private Button btn;
     private SeekBar skbr;
     private TextView age;
-    private RadioGroup RdGrp;
+    private RadioButton RbtOui;
     private Boolean Jeuner;
     private EditText valM;
 
 
+    private Controller controller = new Controller();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,24 +59,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        RdGrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton selectedRadioButton = findViewById(checkedId);
-                String selectedValue = selectedRadioButton.getText().toString();
-                if (selectedValue.equals("Oui")) {
-                    Jeuner = true;
-                } else {
-                    Jeuner = false;
-                }
-            }
-        });
-
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                boolean VerifAge = false , VerifValeur = false;
+                boolean VerifAge = false, VerifValeur = false;
 
 
                 if (skbr.getProgress() != 0)
@@ -87,40 +80,39 @@ public class MainActivity extends AppCompatActivity {
                 if (VerifAge && VerifValeur) {
                     int age = skbr.getProgress();
                     float valM1 = Float.valueOf(valM.getText().toString());
+                    Jeuner=RbtOui.isChecked();
+
+                    controller.createPatient(age,valM1,Jeuner);
+
+                    resultat=controller.getReponse();
 
 
-                    if (Jeuner) {
-                        if (age >= 13 && (valM1 >= 5.0 && valM1 <= 7.2)) {
-                            resultat.setText("niveau de glycémie est normale 1");
-                        } else if ((age >= 6 && age <= 12) && (valM1 >= 5.0 && valM1 <= 10.0)) {
-                            resultat.setText("niveau de glycémie est normale 2");
-                        } else if (age < 6 && (valM1 >= 5.5 && valM1 <= 10.0)) {
-                            resultat.setText("niveau de glycémie est normale 3");
-                        } else {
-                            if (valM1 < 5.0) {
-                                resultat.setText("niveau de glycémie est trop bas");
-                            } else {
-                                resultat.setText("niveau de glycémie est trop elevée");
-                            }
-                        }
-                    } else {
-                        if (age >= 13 && valM1 < 10.5) {
-                            resultat.setText("niveau de glycemie est normale");
-                        } else {
-                            resultat.setText("niveau de glycémie est trop elevée");
-                        }
-                    }
                 }
-            }
+                valM.setText("");
+                skbr.setProgress(0);
 
+                resultat();
+            }
         });
     }
-    public void init(){
-        resultat = (TextView) findViewById(R.id.res);
+
+
+    public void init() {
         btn = (Button) findViewById(R.id.btnConsulter);
         skbr = (SeekBar) findViewById(R.id.sbAge);
         age = (TextView) findViewById(R.id.Age);
-        RdGrp = (RadioGroup) findViewById(R.id.rbtGrp);
+        RbtOui = (RadioButton) findViewById(R.id.rbtOui);
         valM = (EditText) findViewById(R.id.vm);
+    }
+
+    public void resultat() {
+        // Créer une intention pour démarrer l'activité Consultation
+        Intent intent = new Intent(MainActivity.this, ConsultationActivity.class);
+
+        // Transmettre la valeur de 'res' à Consultation
+        intent.putExtra("result", resultat);
+
+        // Démarrer l'activité Consultation
+        startActivity(intent);
     }
 }
