@@ -3,19 +3,23 @@ package com.example.tp1_dev_mob1.controller;
 import com.example.tp1_dev_mob1.model.Patient;
 
 public class Controller {
+
+    public static Controller instance;
     private static Patient patient;
-   //user_action:view-->controller
-    public Controller() //user action
-    { super();}
-    public void createPatient(int age, float valeurMesuree, boolean isFasting)
-            //update:controller-->model
-    {
-        patient =new Patient(age,valeurMesuree,isFasting);
+    public void createPatient(int age,double valM1,boolean isFasting){
+        patient = new Patient(age,valM1,isFasting);
     }
-
-    public String getReponse() //notify controller -->view
-    {
-        return patient.getReponse(); // notify model-->controller
+    private Controller(){
+        super();
     }
-
+    public String getConsultation(){
+        return patient.getReponse();
+    }
+    public  static Controller getInstance(){
+        if(instance== null){
+            return instance=new Controller();
+        }else {
+            return instance;
+        }
+    }
 }

@@ -2,11 +2,11 @@ package com.example.tp1_dev_mob1.model;
 
 public class Patient {
     private int age;
-    private float valeurMesuree;
+    private double valeurMesuree;
     private boolean isFasting ;
     private String reponse ;
 
-    public Patient(int age,float valeurMesuree, boolean isFasting)
+    public Patient(int age, double valeurMesuree, boolean isFasting)
     {
         this.age=age;
         this.valeurMesuree=valeurMesuree;
@@ -41,12 +41,12 @@ public class Patient {
         return age;
     }
 
-    public float getValeurMesuree() {
+    public double getValeurMesuree() {
         return valeurMesuree;
     }
 
-    public static String getReponse() {
-        return getReponse();
+    public String getReponse() {
+        return reponse;
     }
 
 }

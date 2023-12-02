@@ -1,6 +1,7 @@
 package com.example.tp1_dev_mob1.view;
 
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -25,12 +26,14 @@ public class MainActivity extends AppCompatActivity {
     private Button btn;
     private SeekBar skbr;
     private TextView age;
-    private RadioButton RbtOui;
+    private RadioButton rbtOui;
     private Boolean Jeuner;
     private EditText valM;
+    private final int REQUEST_CODE=1;
 
 
-    private Controller controller = new Controller();
+
+    private Controller controller = Controller.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 boolean VerifAge = false, VerifValeur = false;
 
 
+
                 if (skbr.getProgress() != 0)
                     VerifAge = true;
                 else
@@ -78,20 +82,21 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "veuillez vérifiez votre mesurée ", Toast.LENGTH_SHORT).show();
 
                 if (VerifAge && VerifValeur) {
+
                     int age = skbr.getProgress();
-                    float valM1 = Float.valueOf(valM.getText().toString());
-                    Jeuner=RbtOui.isChecked();
+                    double valM1 = Double.valueOf(valM.getText().toString());
+
+                    Jeuner=rbtOui.isChecked();
 
                     controller.createPatient(age,valM1,Jeuner);
 
-                    resultat=controller.getReponse();
+                    resultat=controller.getConsultation();
 
+
+                    resultat();
 
                 }
-                valM.setText("");
-                skbr.setProgress(0);
 
-                resultat();
             }
         });
     }
@@ -101,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         btn = (Button) findViewById(R.id.btnConsulter);
         skbr = (SeekBar) findViewById(R.id.sbAge);
         age = (TextView) findViewById(R.id.Age);
-        RbtOui = (RadioButton) findViewById(R.id.rbtOui);
+        rbtOui = (RadioButton) findViewById(R.id.rbtOui);
         valM = (EditText) findViewById(R.id.vm);
     }
 
@@ -113,6 +118,15 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("result", resultat);
 
         // Démarrer l'activité Consultation
-        startActivity(intent);
+        startActivityForResult(intent,REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode== REQUEST_CODE)
+            if(resultCode==RESULT_CANCELED){
+                Toast.makeText(this, "Erreur !", Toast.LENGTH_SHORT).show();
+            }
     }
 }
