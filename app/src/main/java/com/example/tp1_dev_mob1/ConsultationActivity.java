@@ -1,5 +1,6 @@
 package com.example.tp1_dev_mob1;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -34,22 +35,20 @@ public class ConsultationActivity extends AppCompatActivity {
         }
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                goBack();
-            }
+            public void onClick(View v) {goBack();}
         });
+
 
 
     }
     public void goBack() {
         Intent intent = new Intent();
-        if(resultTextView != null ) {
+        if(resultTextView.getText() != null && !resultTextView.getText().toString().isEmpty()) {
             setResult(RESULT_OK, intent);
+        } else {
+            setResult(RESULT_CANCELED, intent);
         }
-        else {
-            setResult(RESULT_CANCELED,intent);
-
-        }
+        finish();
     }
 }
 

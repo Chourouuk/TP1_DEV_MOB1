@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "897225268433",
+    "project_id": "tp1-dev-mob1",
+    "storage_bucket": "tp1-dev-mob1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:897225268433:android:c94e62ffead997e077b9f0",
+        "android_client_info": {
+          "package_name": "com.example.tp1_dev_mob1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXPSIlRCnlm7vPCANqPYUb-hWs7V_eJ_Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

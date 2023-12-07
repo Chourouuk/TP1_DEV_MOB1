@@ -16,8 +16,8 @@ public class Controller {
         return patient.getReponse();
     }
     public  static Controller getInstance(){
-        if(instance== null){
-            return instance=new Controller();
+        if(instance == null){
+            return instance = new Controller();
         }else {
             return instance;
         }

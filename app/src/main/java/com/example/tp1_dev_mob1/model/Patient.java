@@ -45,6 +45,10 @@ public class Patient {
         return valeurMesuree;
     }
 
+    public boolean isFasting() {
+        return isFasting;
+    }
+
     public String getReponse() {
         return reponse;
     }

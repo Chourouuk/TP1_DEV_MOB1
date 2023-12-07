@@ -5,36 +5,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/sign"
-    android:paddingLeft="30dp"
-    android:paddingRight="30dp"
+    android:background="@drawable/sign1"
+    android:paddingLeft="65dp"
+    android:paddingRight="65dp"
     tools:context=".Signup">
 
     <TextView
         android:id="@+id/sign"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="sign_up"
-        android:layout_marginLeft="80dp"
+        android:text="signUp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="70dp"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="@color/violet"
         android:layout_marginTop="65dp"
-        android:textSize="34sp"
+        android:textSize="36sp"
         android:layout_alignParentTop="true"
         />
+
+
     <EditText
         android:id="@+id/user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Username"
-        android:layout_marginTop="100dp"
+        android:drawableLeft="@drawable/baseline_person_24"
+        android:drawablePadding="8dp"
+        android:layout_marginTop="80dp"
         android:layout_below="@+id/sign"/>
 
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/baseline_email_24"
+        android:drawablePadding="8dp"
         android:layout_marginTop="8dp"
         android:hint="Email"
         android:layout_below="@id/user"/>
@@ -42,6 +48,8 @@
         android:id="@+id/pwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/baseline_lock_24"
+        android:drawablePadding="8dp"
         android:layout_marginTop="8dp"
         android:inputType="textPassword"
         android:hint="Password"
@@ -52,49 +60,47 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:inputType="textPassword"
+        android:drawableLeft="@drawable/baseline_lock_24"
+        android:drawablePadding="8dp"
         android:hint="Repeat password"
         android:layout_below="@id/pwd"/>
     <Button
         android:id="@+id/signInButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/rpwd"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/line_shape"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/violet"
         android:text="Sign Up"
-        android:textColor="@color/black"
-        android:textSize="19dp"
-        />
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:layout_height="55dp"
+        app:cornerRadius="30dp" />
+
 
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/signInButton"
-        android:layout_marginTop="-9dp"
-
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="25dp"
             android:text="Already have an account ?"
             android:textSize="15dp"
-            android:textStyle="bold"  />
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/signUpButton"
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:background="#009B61A5"
-            android:text="Sign Up"
+            android:text="Register"
             android:textAllCaps="false"
-            android:textColor="@color/violet"
+            android:textColor="@color/black"
             android:textSize="15dp"
             android:textStyle="bold" />
     </GridLayout>

@@ -24,10 +24,10 @@ public class LoginActivity extends AppCompatActivity {
         // Move SharedPreferences initialization here
         sharedPreferences = getSharedPreferences("SignUp", MODE_PRIVATE);
 
-        Button btn =(Button) findViewById(R.id.signUpButton);
-        EditText user =(EditText) findViewById(R.id.usernameEditText);
-        EditText pwd =(EditText) findViewById(R.id.passwordEditText);
-        Button btn1 =(Button) findViewById(R.id.signInButton);
+        Button btn =(Button) findViewById(R.id.loginButton);
+        EditText user =(EditText) findViewById(R.id.username);
+        EditText pwd =(EditText) findViewById(R.id.password);
+        Button btn1 =(Button) findViewById(R.id.signUpButton);
 
 
         btn.setOnClickListener(new View.OnClickListener() {

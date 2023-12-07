@@ -30,8 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private Boolean Jeuner;
     private EditText valM;
     private final int REQUEST_CODE=1;
-
-
+ ;
 
     private Controller controller = Controller.getInstance();
 
@@ -41,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         init();
+
 
 
         skbr.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -65,10 +65,7 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 boolean VerifAge = false, VerifValeur = false;
-
-
 
                 if (skbr.getProgress() != 0)
                     VerifAge = true;
@@ -85,18 +82,14 @@ public class MainActivity extends AppCompatActivity {
 
                     int age = skbr.getProgress();
                     double valM1 = Double.valueOf(valM.getText().toString());
-
                     Jeuner=rbtOui.isChecked();
 
                     controller.createPatient(age,valM1,Jeuner);
 
                     resultat=controller.getConsultation();
 
-
                     resultat();
-
                 }
-
             }
         });
     }
@@ -108,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         age = (TextView) findViewById(R.id.Age);
         rbtOui = (RadioButton) findViewById(R.id.rbtOui);
         valM = (EditText) findViewById(R.id.vm);
+
     }
 
     public void resultat() {
@@ -124,9 +118,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode== REQUEST_CODE)
-            if(resultCode==RESULT_CANCELED){
+        if(requestCode == REQUEST_CODE){
+            if(resultCode == RESULT_CANCELED){
                 Toast.makeText(this, "Erreur !", Toast.LENGTH_SHORT).show();
             }
+        }
     }
 }
