@@ -34,21 +34,39 @@ public class Signup extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!user.getText().toString().isEmpty() && !email.getText().toString().isEmpty()){
-                    if(!pwd.getText().toString().isEmpty()){
-                        if(!rpwd.getText().toString().isEmpty() && pwd.getText().toString().equals(rpwd.getText().toString())){
-                            loginController.CreateUser(user.getText().toString(),pwd.getText().toString(),Signup.this);
-                            resultat();
-                            Toast.makeText(Signup.this, "Created succesffuly", Toast.LENGTH_SHORT).show();
-                        }else if (!pwd.getText().toString().equals(rpwd.getText().toString())) {
-                            Toast.makeText(Signup.this, "Merci de verifier votre pwd", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(Signup.this, "Merci d'entrer un password", Toast.LENGTH_SHORT).show();
-                    }
-                }else{
-                    Toast.makeText(Signup.this, "Username, Email are required !", Toast.LENGTH_SHORT).show();
+                boolean username=false;
+                boolean psw=false;
+                boolean adrmail=false;
+                boolean verifpswd = false;
+                String pass= pwd.getText().toString();
+                String rpass=rpwd.getText().toString();
+                if (!user.getText().toString().isEmpty()) {
+                    username = true;
+                } else {
+                    Toast.makeText(Signup.this, "insert your username", Toast.LENGTH_SHORT).show();
                 }
+
+                if (!email.getText().toString().isEmpty() && email.getText().toString().contains("@") && email.getText().toString().contains(".") && !email.getText().toString().contains(" ")) {
+                    adrmail = true;
+                } else {
+                    Toast.makeText(Signup.this, "insert your email address", Toast.LENGTH_LONG).show();
+                }
+                if (!pass.isEmpty()){
+                    psw=true;
+                }else {
+                    Toast.makeText(Signup.this, "you need to enter a password", Toast.LENGTH_LONG).show();
+                }
+                if (!rpass.isEmpty() && pass.equals(rpass)){
+                    verifpswd=true;
+                }else {
+                    Toast.makeText(Signup.this, "you must enter the same password", Toast.LENGTH_LONG).show();
+                }
+                if(username && adrmail &&psw &&verifpswd){
+                    loginController.CreateUser(user.getText().toString(),pwd.getText().toString(),Signup.this);
+                    Signup();
+                    Toast.makeText(Signup.this, "created succesffuly", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
