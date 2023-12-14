@@ -11,30 +11,28 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.tp1_dev_mob1.view.MainActivity;
+import com.example.tp1_dev_mob1.controller.LoginController;
 
 public class LoginActivity extends AppCompatActivity {
 
-    SharedPreferences sharedPreferences;
+    private LoginController loginController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        // Move SharedPreferences initialization here
-        sharedPreferences = getSharedPreferences("SignUp", MODE_PRIVATE);
-
         Button btn =(Button) findViewById(R.id.loginButton);
         EditText user =(EditText) findViewById(R.id.username);
         EditText pwd =(EditText) findViewById(R.id.password);
         Button btn1 =(Button) findViewById(R.id.signUpButton);
-        // Retrieve the value stored with the key "DEVELOPER"
-        String username = sharedPreferences.getString("user", "");
-        String password = sharedPreferences.getString("password", "");
+        loginController = LoginController.getInstance(LoginActivity.this);
+
+        String username = loginController.getUsername();
+        String password = loginController.getPassword();
 
         user.setText(username);
         pwd.setText(password);
-
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override

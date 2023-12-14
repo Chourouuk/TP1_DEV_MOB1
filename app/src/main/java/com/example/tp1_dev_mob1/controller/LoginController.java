@@ -13,18 +13,18 @@ public class LoginController {
         super();
     }
 
-    public static final LoginController getInstance(Context context) {
+    public static LoginController getInstance(Context context) {
         if (LoginController.instance == null)
-            instance = new LoginController();
+            LoginController.instance = new LoginController();
         recapUser(context);
-        return instance;
+        return LoginController.instance;
     }
 
    private static void recapUser (Context context) {
        SharedPreferences sharedPreferences = context.getSharedPreferences(shared_Pref, Context.MODE_PRIVATE);
-        String Username = sharedPreferences.getString("Username","");
-        String Password = sharedPreferences.getString("password","");
-        user = new User(Username, Password);
+       String Username = sharedPreferences.getString("Username","");
+       String Password = sharedPreferences.getString("password","");
+       user = new User(Username, Password);
     }
 
     public void CreateUser(String Username, String password, Context context) {
@@ -33,7 +33,7 @@ public class LoginController {
         //persistance de données de l'utilisateur
         SharedPreferences sharedPreferences = context.getSharedPreferences(shared_Pref, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("user" , Username);
+        editor.putString("Username" , Username);
         editor.putString("password" ,password);
         editor.apply();
     }

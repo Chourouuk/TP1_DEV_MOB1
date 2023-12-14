@@ -11,18 +11,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.tp1_dev_mob1.view.MainActivity;
+import com.example.tp1_dev_mob1.controller.LoginController;
 
 public class Signup extends AppCompatActivity {
 
-    SharedPreferences sharedPreferences;
+    private LoginController loginController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-
-        // Initialize SharedPreferences instance
-        sharedPreferences = getSharedPreferences("SignUp", MODE_PRIVATE);
-
 
         Button btn =(Button) findViewById(R.id.signInButton);
         EditText user =(EditText) findViewById(R.id.user);
@@ -31,6 +29,7 @@ public class Signup extends AppCompatActivity {
         EditText rpwd =(EditText) findViewById(R.id.rpwd);
         Button btn1 =(Button) findViewById(R.id.signUpButton);
 
+        loginController=LoginController.getInstance(this);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,7 +37,7 @@ public class Signup extends AppCompatActivity {
                 if(!user.getText().toString().isEmpty() && !email.getText().toString().isEmpty()){
                     if(!pwd.getText().toString().isEmpty()){
                         if(!rpwd.getText().toString().isEmpty() && pwd.getText().toString().equals(rpwd.getText().toString())){
-                            saveData(user.getText().toString(),pwd.getText().toString());
+                            loginController.CreateUser(user.getText().toString(),pwd.getText().toString(),Signup.this);
                             resultat();
                             Toast.makeText(Signup.this, "Created succesffuly", Toast.LENGTH_SHORT).show();
                         }else if (!pwd.getText().toString().equals(rpwd.getText().toString())) {
@@ -79,11 +78,5 @@ public class Signup extends AppCompatActivity {
 
         // Démarrer l'activité Consultation
         startActivity(intent);
-    }
-    private void saveData(String user,String pwd) {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("user" , user);
-        editor.putString("password" ,pwd);
-        editor.apply();
     }
 }
