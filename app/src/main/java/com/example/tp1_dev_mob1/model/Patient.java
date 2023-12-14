@@ -37,9 +37,7 @@ public class Patient {
     } }
     //modify model-->controller
 
-    public int getAge() {
-        return age;
-    }
+    public int getAge() { return age;}
 
     public double getValeurMesuree() {
         return valeurMesuree;

@@ -118,10 +118,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE){
-            if(resultCode == RESULT_CANCELED){
-                Toast.makeText(this, "Erreur !", Toast.LENGTH_SHORT).show();
+        if (requestCode==REQUEST_CODE && resultCode==RESULT_CANCELED)
+            Toast.makeText(this, "GOOD", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(this, "ERROR", Toast.LENGTH_SHORT).show();{
+
             }
         }
     }
-}

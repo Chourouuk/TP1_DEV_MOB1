@@ -2,16 +2,16 @@ package com.example.tp1_dev_mob1.model;
 
 public class User {
 
-    private String UserName ;
+    private String Username ;
     private String password;
 
-    public User(String userName, String password) {
-        this.UserName = userName;
+    public User(String username, String password) {
+        this.Username = username;
         this.password = password;
     }
 
-    public String getUserName() {
-        return UserName;
+    public String getUsername() {
+        return Username;
     }
 
     public  String getPassword() {

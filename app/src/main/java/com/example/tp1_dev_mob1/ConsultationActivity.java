@@ -20,16 +20,15 @@ public class ConsultationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.consultation);
 
+        TextView resultTextView = (TextView) findViewById(R.id.res);
+
         // Retrieve the data from the Intent
         Intent intent = getIntent();
+
         Button btn = (Button) findViewById(R.id.back);
 
         if (intent != null) {
             String result = ((Intent) intent).getStringExtra("result");
-
-            // Now, you can use the 'result' variable in Const_Activity
-            // For example, you can display it in a TextView
-            TextView resultTextView =(TextView) findViewById(R.id.res);
 
             resultTextView.setText(result);
         }
@@ -42,11 +41,11 @@ public class ConsultationActivity extends AppCompatActivity {
 
     }
     public void goBack() {
-        Intent intent = new Intent();
+        Intent intent1 = new Intent();
         if(resultTextView.getText() != null && !resultTextView.getText().toString().isEmpty()) {
-            setResult(RESULT_OK, intent);
+            setResult(RESULT_OK, intent1);
         } else {
-            setResult(RESULT_CANCELED, intent);
+            setResult(RESULT_CANCELED, intent1);
         }
         finish();
     }

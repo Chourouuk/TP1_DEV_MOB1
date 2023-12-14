@@ -28,14 +28,17 @@ public class LoginActivity extends AppCompatActivity {
         EditText user =(EditText) findViewById(R.id.username);
         EditText pwd =(EditText) findViewById(R.id.password);
         Button btn1 =(Button) findViewById(R.id.signUpButton);
+        // Retrieve the value stored with the key "DEVELOPER"
+        String username = sharedPreferences.getString("user", "");
+        String password = sharedPreferences.getString("password", "");
+
+        user.setText(username);
+        pwd.setText(password);
 
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Retrieve the value stored with the key "DEVELOPER"
-                String username = sharedPreferences.getString("user", "");
-                String password = sharedPreferences.getString("password", "");
 
                 if(!user.getText().toString().isEmpty() && !pwd.getText().toString().isEmpty()){
                     if(user.getText().toString().equals(username) && pwd.getText().toString().equals(password)){
